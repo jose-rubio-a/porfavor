@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  web:
+    image: jra2605/flaskapp
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+  sqlite3:
+    container_name: sqlite3_container
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/database
+    ports:
+      - '9000:9000' # expose ports - HOST:CONTAINER
+    restart: unless-stopped
